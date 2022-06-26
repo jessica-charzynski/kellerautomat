@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>ESA3</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Poppins.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/introjs.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md" style="padding-left: 50px;">
+        <div class="container-fluid"><a class="navbar-brand" href=""><strong>Projektaufgabe P3: Kellerautomat</strong><br>
+                <p class="footer">Jessica Charzynski | Matrikelnummer: 923010 | Theoretische Informatik (Sommersemester 2022)</p>
+            </a>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">zur Webanwendung</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="dokumentation">
+        <h2>Dokumentation</h2>
+        <hr>
+        <h5>Aufgabenstellung</h5>
+        <p>Erzeugen Sie mit Hilfe der Grammatik aus Aufgabe P2 einen zufälligen arithmetische Ausdruck.&nbsp;Es sollt auch möglich sein einen [wahrscheinlich] fehlerhaften Ausdruck zu erzeugen. Dazu löschen Sie einfach ein beliebiges Zeichen aus dem Ausdruck.&nbsp;Prüfen Sie den erzeugten Ausdruck mittels eines Kellerautomaten.<br></p>
+        <hr>
+        <h5>Fachliche Dokumentation</h5>
+        <p>Formal kann der Kellerautomat als 6-Tupel definiert werden:<br><strong>K = {&nbsp;Q, Σ, Γ, δ, S, F&nbsp;}</strong><br></p>
+        <ul>
+            <li>die nichtleere, endlich Zustandsmenge Q = { q0, q1, q2, q3 }</li>
+            <li>das Eingabealphabet&nbsp;Σ = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, +, -, *, /, (, ) }<br></li>
+            <li>das Kelleralphabet&nbsp;Γ = { $, ( }</li>
+            <li>die Überführungsfunktion&nbsp;δ = siehe Tabelle<br></li>
+            <li>der Startzustand S = { q0 }</li>
+            <li>die Menge von Endzuständen F = { q3 }</li>
+        </ul>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Q</th>
+                        <th><strong>Σe</strong><br></th>
+                        <th>Γe<br></th>
+                        <th>P(Q x&nbsp;Γe)<br></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>q0</td>
+                        <td><span style="color: rgb(32, 33, 34);">ɛ</span><br></td>
+                        <td><span style="color: rgb(32, 33, 34);">ɛ</span><br></td>
+                        <td><strong><span style="color: rgba(0, 0, 0, 0.87);">{(&nbsp;</span></strong><span style="color: rgba(0, 0, 0, 0.87);">q1, $ </span><strong><span style="color: rgba(0, 0, 0, 0.87);">)}</span></strong><br></td>
+                    </tr>
+                    <tr>
+                        <td>q1</td>
+                        <td>(</td>
+                        <td><span style="color: rgb(32, 33, 34);">ɛ</span><br></td>
+                        <td><strong><span style="color: rgba(0, 0, 0, 0.87);">{(</span></strong><span style="color: rgba(0, 0, 0, 0.87);">&nbsp;q1, (&nbsp;</span><strong><span style="color: rgba(0, 0, 0, 0.87);">)}</span></strong><br></td>
+                    </tr>
+                    <tr>
+                        <td>q1</td>
+                        <td>Z</td>
+                        <td><span style="color: rgb(32, 33, 34);">ɛ</span><br></td>
+                        <td><strong><span style="color: rgba(0, 0, 0, 0.87);">{(&nbsp;</span></strong><span style="color: rgba(0, 0, 0, 0.87);">q2,&nbsp;</span><span style="color: rgb(32, 33, 34);">ɛ</span><span style="color: rgba(0, 0, 0, 0.87);">&nbsp;</span><strong><span style="color: rgba(0, 0, 0, 0.87);">)}</span></strong><br></td>
+                    </tr>
+                    <tr>
+                        <td>q2</td>
+                        <td>O</td>
+                        <td><span style="color: rgb(32, 33, 34);">ɛ</span><br></td>
+                        <td><strong><span style="color: rgba(0, 0, 0, 0.87);">{(</span></strong><span style="color: rgba(0, 0, 0, 0.87);">&nbsp;q1,&nbsp;</span><span style="color: rgb(32, 33, 34);">ɛ&nbsp;</span><strong><span style="color: rgba(0, 0, 0, 0.87);">)}</span></strong><br></td>
+                    </tr>
+                    <tr>
+                        <td>q2</td>
+                        <td>)</td>
+                        <td>(</td>
+                        <td><strong><span style="color: rgba(0, 0, 0, 0.87);">{(</span></strong><span style="color: rgba(0, 0, 0, 0.87);">&nbsp;q2,&nbsp;</span><span style="color: rgb(32, 33, 34);">ɛ&nbsp;</span><strong><span style="color: rgba(0, 0, 0, 0.87);">)}</span></strong><br></td>
+                    </tr>
+                    <tr>
+                        <td>q2</td>
+                        <td><span style="color: rgb(32, 33, 34);">ɛ</span><br></td>
+                        <td>$</td>
+                        <td><strong><span style="color: rgba(0, 0, 0, 0.87);">{(</span></strong><span style="color: rgba(0, 0, 0, 0.87);">&nbsp;q3,&nbsp;</span><span style="color: rgb(32, 33, 34);">ɛ&nbsp;</span><strong><span style="color: rgba(0, 0, 0, 0.87);">)}</span></strong><br></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h5>Technische Dokumentation</h5>
+        <p>Das User Interface habe ich mithilfe der&nbsp;Entwicklungsanwendung&nbsp;<a href="https://bootstrapstudio.io/" target="_blank">Bootstrap Studio</a>&nbsp;gestaltet.&nbsp;<br>Mithilfe dem Framework&nbsp;<a href="https://introjs.com/" target="_blank">IntroJS</a>&nbsp;habe ich eine kleine Hilfe-Tour durch meine Anwendung eingebaut.<br><br><span style="color: rgb(0, 0, 0);">Zunächst wird ein zu überprüfender Ausdruck erstellt. Das kann durch eine freie Texteingabe oder über die zwei Buttons erfolgen.&nbsp;Im Anschluss wird die Animation im Kellerautomat durch einen Klick auf dem Play-Button gestartet.</span><br><span style="color: rgb(0, 0, 0);">Für die Gestaltung der Schritte habe ich die JavaScript-Bibliothek jQuery verwendet.</span><br></p><script src="https://gist.github.com/jessica-charzynski/ea31c0569c6c8655d82ba1d7b2f08d3c.js"></script>
+        <p><span style="color: rgb(0, 0, 0);">Meine Anwendung ruft den zu überprüfenden Ausdruck auf und wandelt ihn in ein Array aus den einzelnen Zeichen um. Anschließend wird Zeichen für Zeichen überprüft.</span><br><br><span style="color: rgb(0, 0, 0);">Wenn eine ungültige Eingabe vorliegt, wird die Animation beendet und die Ausgabe „Ausdruck ist ungültig“ erfolgt.</span><br><br><span style="color: rgb(0, 0, 0);">Liegt hingegen eine gültige Eingabe vor, kann eine tiefer gelegene Ästelung in der if-else-Verzweigung bearbeitet werden. Dabei wird das nächste Zeichen überprüft.&nbsp;</span><br><br><span style="color: rgb(0, 0, 0);">Dies erfolgt solange bis</span><br><span style="color: rgb(0, 0, 0);">a) ein ungültiges Zeichen überprüft wird und somit die Animation mit einer entsprechenden Rückmeldung beendet wird.</span><br><span style="color: rgb(0, 0, 0);">b) alle Zeichen überprüft wurden.&nbsp;Ist dabei der Endzustand erreicht worden und liegt ein leerer Keller vor, handelt es sich um eine gültigen Ausdruck der Grammatik und die Rückmeldung „Ausdruck ist gültig“ erscheint.&nbsp;Wurde jedoch der Endzustand nicht erreicht und/oder befinden sich noch Zeichen im Keller, dann handelt es sich um einen ungültigen Ausdruck und eine entsprechende Rückmeldung wird ausgegeben.</span><br><br><span style="color: rgb(0, 0, 0);">Nach Abspielen der Animation kann mit dem "Anwendung resetten"-Button die Seite mithilfe der Funktion "reloadThePage()" in ihren Ausgangszustand zurückversetzt werden.</span><br></p>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/intro.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/kellerautomat.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>P3: Kellerautomat</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Poppins.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/introjs.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md" style="margin: 0px;">
+        <div class="container-fluid"><a class="navbar-brand" href=""><strong>Projektaufgabe P3: Kellerautomat</strong><br>
+                <p class="footer">Jessica Charzynski | Matrikelnummer: 923010 | Theoretische Informatik (Sommersemester 2022)</p>
+            </a>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="dokumentation.html" data-intro="Hier geht es zu der Dokumentation.">Dokumentation</a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="introJs().start()">Tour</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="width: 100%;margin: 0px 50px;padding: 0px;">
+        <div class="row">
+            <div class="col-auto col-md-6">
+                <div id="interaction-area"><button class="btn btn-primary" id="button-korrekt" type="button" data-intro="Mit diesem Button wird ein zufälliger, korrekter Ausdruck ausgegeben." onclick="getAusdruckKorrekt()">korrekter Ausdruck</button><button class="btn btn-primary" id="button-falsch" type="button" data-intro="Mit diesem Button wird ein zufälliger, falscher Ausdruck ausgegeben." onclick="getAusdruckFalsch()">falscher Ausdruck</button><button class="btn btn-primary" id="button-reset" type="button" onclick="reloadThePage()" data-intro="Mit diesem Button wird die komplette Anwendung in ihren Ausgangszustand zurückgesetzt.">Anwendung resetten</button><br><input class="input" id="expression" type="text" placeholder="Eigenen Ausdruck eingeben" data-intro="Alternativ können im Textfeld auch eigene Ausdrücke eingegeben werden." /><i id="playbutton" class="far fa-play-circle fa-2x" data-intro="Mit einem Klick auf den Play-Button werden die einzelnen Schritte im Kellerautomat angezeigt." ></i>
+</div>
+                <div class="info-box" data-intro="Alle wichtigen Informationen zum Kellerautomaten befinden sich in der Box auf der linken Seite.">
+                    <div class="col">
+                        <h6><strong>Kellerautomat&nbsp;= {&nbsp;Q, Σ, Γ, δ, S, F&nbsp;}</strong><br></h6>
+                    </div>
+                    <p class="info-box-text">Zustandsmenge&nbsp;Q = { q0, q1, q2, q3 }<br>Eingabealphabet&nbsp;Σ = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, +, -, *, /, (, ) }<br>Kelleralphabet&nbsp;Γ = { $, ( }<br>Überführungsfunktion&nbsp;δ = siehe Tabelle<br>Startzustand&nbsp;S = { q0 }<br>Endzustand&nbsp;F = { q3 }<br></p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Q</th>
+                                    <th><strong>Σe</strong><br></th>
+                                    <th>Γe<br></th>
+                                    <th>P(Q x&nbsp;Γe)<br></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>q0</td>
+                                    <td><span style="color: rgb(32, 33, 34);">ɛ</span><br></td>
+                                    <td><span style="color: rgb(32, 33, 34);">ɛ</span><br></td>
+                                    <td><strong><span style="color: rgba(0, 0, 0, 0.87);">{(&nbsp;</span></strong><span style="color: rgba(0, 0, 0, 0.87);">q1, $ </span><strong><span style="color: rgba(0, 0, 0, 0.87);">)}</span></strong><br></td>
+                                </tr>
+                                <tr>
+                                    <td>q1</td>
+                                    <td>(</td>
+                                    <td><span style="color: rgb(32, 33, 34);">ɛ</span><br></td>
+                                    <td><strong><span style="color: rgba(0, 0, 0, 0.87);">{(</span></strong><span style="color: rgba(0, 0, 0, 0.87);">&nbsp;q1, (&nbsp;</span><strong><span style="color: rgba(0, 0, 0, 0.87);">)}</span></strong><br></td>
+                                </tr>
+                                <tr>
+                                    <td>q1</td>
+                                    <td>Z</td>
+                                    <td><span style="color: rgb(32, 33, 34);">ɛ</span><br></td>
+                                    <td><strong><span style="color: rgba(0, 0, 0, 0.87);">{(&nbsp;</span></strong><span style="color: rgba(0, 0, 0, 0.87);">q2,&nbsp;</span><span style="color: rgb(32, 33, 34);">ɛ</span><span style="color: rgba(0, 0, 0, 0.87);">&nbsp;</span><strong><span style="color: rgba(0, 0, 0, 0.87);">)}</span></strong><br></td>
+                                </tr>
+                                <tr>
+                                    <td>q2</td>
+                                    <td>O</td>
+                                    <td><span style="color: rgb(32, 33, 34);">ɛ</span><br></td>
+                                    <td><strong><span style="color: rgba(0, 0, 0, 0.87);">{(</span></strong><span style="color: rgba(0, 0, 0, 0.87);">&nbsp;q1,&nbsp;</span><span style="color: rgb(32, 33, 34);">ɛ&nbsp;</span><strong><span style="color: rgba(0, 0, 0, 0.87);">)}</span></strong><br></td>
+                                </tr>
+                                <tr>
+                                    <td>q2</td>
+                                    <td>)</td>
+                                    <td>(</td>
+                                    <td><strong><span style="color: rgba(0, 0, 0, 0.87);">{(</span></strong><span style="color: rgba(0, 0, 0, 0.87);">&nbsp;q2,&nbsp;</span><span style="color: rgb(32, 33, 34);">ɛ&nbsp;</span><strong><span style="color: rgba(0, 0, 0, 0.87);">)}</span></strong><br></td>
+                                </tr>
+                                <tr>
+                                    <td>q2</td>
+                                    <td><span style="color: rgb(32, 33, 34);">ɛ</span><br></td>
+                                    <td>$</td>
+                                    <td><strong><span style="color: rgba(0, 0, 0, 0.87);">{(</span></strong><span style="color: rgba(0, 0, 0, 0.87);">&nbsp;q3,&nbsp;</span><span style="color: rgb(32, 33, 34);">ɛ&nbsp;</span><strong><span style="color: rgba(0, 0, 0, 0.87);">)}</span></strong><br></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto col-md-6">
+                <div id="box-kellerautomat"><svg id="kellerautomat_svg"
+ data-intro="Im Graph werden die einzelnen Schritte animiert."
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ width="1047px" height="303.5px">
+    
+<path id="start_pfeil" fill-rule="evenodd"  stroke="rgb(61, 61, 61)" stroke-width="4px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(61, 61, 61)"
+ d="M3.993,150.5 L3.993,149.5 L48.785,149.0 L48.784,144.500 L53.993,149.499 L48.785,154.500 L48.785,150.0 L3.993,150.5 Z"/>
+    
+<path id="q0_kreis" fill-rule="evenodd"  stroke="rgb(61, 61, 61)" stroke-width="5px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+ d="M121.499,85.999 C156.17,85.999 183.999,113.982 183.999,148.499 C183.999,183.17 156.17,210.999 121.499,210.999 C86.982,210.999 58.999,183.17 58.999,148.499 C58.999,113.982 86.982,85.999 121.499,85.999 Z"/>
+    
+<text id="q0_text" kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="53.333px" x="95px" y="164px"><tspan font-size="53.333px" font-family="Helvetica" fill="#3D3D3D">q0</tspan></text>
+    
+<path id="q0q1_pfeil" fill-rule="evenodd" stroke="rgb(61, 61, 61)" stroke-width="4px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(61, 61, 61)"
+ d="M186.3,150.499 L185.996,149.499 L331.366,148.597 L331.338,144.97 L340.996,149.37 L331.401,154.96 L331.373,149.597 L186.3,150.499 Z"/>
+    
+<path id="q1_kreis" fill-rule="evenodd"  stroke="rgb(61, 61, 61)" stroke-width="5px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+ d="M406.499,85.999 C441.17,85.999 468.999,113.982 468.999,148.499 C468.999,183.17 441.17,210.999 406.499,210.999 C371.982,210.999 343.999,183.17 343.999,148.499 C343.999,113.982 371.982,85.999 406.499,85.999 Z"/>
+    
+<text id="q1_text" kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="53.333px" x="382px" y="165px"><tspan font-size="53.333px" font-family="Helvetica" fill="#3D3D3D">q1</tspan></text>
+    
+<path id="q1q2_pfeil" fill-rule="evenodd"  stroke="rgb(61, 61, 61)" stroke-width="4px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(61, 61, 61)"
+ d="M469.3,151.499 L468.996,150.499 L618.118,149.573 L618.90,145.73 L627.996,150.12 L618.152,155.73 L618.124,150.573 L469.3,151.499 Z"/>
+    
+<path id="q2_kreis" fill-rule="evenodd"  stroke="rgb(61, 61, 61)" stroke-width="5px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+ d="M691.499,86.999 C726.17,86.999 753.999,114.982 753.999,149.499 C753.999,184.17 726.17,211.999 691.499,211.999 C656.982,211.999 628.999,184.17 628.999,149.499 C628.999,114.982 656.982,86.999 691.499,86.999 Z"/>
+    
+<text id="q2_text" kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="53.333px" x="666px" y="165px"><tspan font-size="53.333px" font-family="Helvetica" fill="#3D3D3D">q2</tspan></text>
+    
+<path id="q2q3_pfeil" fill-rule="evenodd"  stroke="rgb(61, 61, 61)" stroke-width="4px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(61, 61, 61)"
+ d="M754.3,151.499 L753.996,150.499 L903.118,149.573 L903.90,145.73 L912.996,150.12 L903.152,155.73 L903.124,150.573 L754.3,151.499 Z"/>
+    
+<path id="q2q1_pfeil" fill-rule="evenodd"  stroke="rgb(61, 61, 61)" stroke-width="4px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(61, 61, 61)"
+ d="M669.145,208.489 C668.911,208.254 668.677,208.18 668.443,207.782 C601.486,273.597 496.793,279.607 422.730,224.417 C423.623,223.218 424.516,222.19 425.410,220.820 C419.631,218.584 413.856,215.989 408.115,213.15 C411.621,218.448 415.405,223.721 419.457,228.814 C420.350,227.614 421.242,226.415 422.135,225.216 C496.587,280.696 601.833,274.655 669.145,208.489 Z"/>
+    
+<path id="q2_pfeil" fill-rule="evenodd"  stroke="rgb(61, 61, 61)" stroke-width="4px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(61, 61, 61)"
+ d="M732.916,102.384 C732.700,102.404 732.484,102.424 732.268,102.445 C729.853,32.725 666.787,26.948 655.58,86.973 C655.983,87.481 656.909,87.988 657.835,88.493 C656.93,91.617 654.496,95.328 653.136,99.698 C652.349,94.889 651.850,90.1 651.666,85.103 C652.590,85.615 653.515,86.125 654.441,86.634 C666.365,25.637 730.465,31.507 732.916,102.384 Z"/>
+    
+<path id="q1_pfeil" fill-rule="evenodd"  stroke="rgb(61, 61, 61)" stroke-width="4px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(61, 61, 61)"
+ d="M446.916,99.384 C446.700,99.404 446.484,99.424 446.268,99.445 C443.853,29.726 380.787,23.948 369.58,83.973 C369.983,84.481 370.909,84.988 371.835,85.493 C370.93,88.617 368.496,92.328 367.136,96.698 C366.349,91.889 365.850,87.0 365.666,82.103 C366.590,82.615 367.516,83.125 368.441,83.634 C380.365,22.637 444.465,28.507 446.916,99.384 Z"/>
+    
+<path id="q3_kreis_aussen" fill-rule="evenodd"  stroke="rgb(61, 61, 61)" stroke-width="5px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+ d="M976.499,86.999 C1011.17,86.999 1038.999,114.982 1038.999,149.499 C1038.999,184.17 1011.17,211.999 976.499,211.999 C941.982,211.999 913.999,184.17 913.999,149.499 C913.999,114.982 941.982,86.999 976.499,86.999 Z"/>
+    
+<path id="q3_kreis_innen" fill-rule="evenodd"  stroke="rgb(61, 61, 61)" stroke-width="5px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+ d="M976.999,94.999 C1007.375,94.999 1031.999,119.624 1031.999,149.999 C1031.999,180.375 1007.375,204.999 976.999,204.999 C946.624,204.999 921.999,180.375 921.999,149.999 C921.999,119.624 946.624,94.999 976.999,94.999 Z"/>
+    
+<text id="q3_text" kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="53.333px" x="949px" y="165px"><tspan font-size="53.333px" font-family="Helvetica" fill="#3D3D3D">q3</tspan></text>
+    
+<text id="q0q1_pfeil_text" kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="33.333px" x="203px" y="137.261px"><tspan font-size="33.333px" font-family="Arial" fill="#3D3D3D">&#603;&#44;&#32;&#603;&#32;&#8594;&#32;&#36;</tspan></text>
+    
+<text id="q1q2_pfeil_text" kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="33.333px" x="486px" y="137.261px"><tspan font-size="33.333px" font-family="Arial" fill="#3D3D3D">Z&#44;&#32;&#603;&#32;&#8594;&#32;&#603;</tspan></text>
+    
+<text id="q2q1_pfeil_text" kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="33.333px" x="479px" y="296.261px"><tspan font-size="33.333px" font-family="Arial" fill="#3D3D3D">O&#44;&#32;&#603;&#32;&#8594;&#32;&#603;</tspan></text>
+    
+<text id="q2q3_pfeil_text" kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="33.333px" x="775px" y="137.261px"><tspan font-size="33.333px" font-family="Arial" fill="#3D3D3D">&#603;&#44;&#32;&#36;&#32;&#8594;&#32;&#603;</tspan></text>
+    
+<text id="q1_pfeil_text" kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="33.333px" x="354px" y="26.261px"><tspan font-size="33.333px" font-family="Arial" fill="#3D3D3D">&#40;&#44;&#32;&#603;&#32;&#8594;&#32;&#40;</tspan></text>
+    
+<text id="q2_pfeil_text" kerning="auto" font-family="Myriad Pro" fill="rgb(0, 0, 0)" font-size="33.333px" x="634px" y="26.261px"><tspan font-size="33.333px" font-family="Arial" fill="#3D3D3D">&#41;&#44;&#32;&#40;&#32;&#8594;&#32;&#603;</tspan></text>
+    
+</svg></div>
+                <div id="box-verarbeiteter-ausdruck" data-intro="Hier wird der aktuelle Stand der Verarbeitung des Ausdrucks gezeigt.">
+                    <h5>verarbeiteter Ausdruck:</h5><p id="ausdruck_empty" class="aktuelle_anzeige">empty</p>
+<p id="aktueller_ausdruck_inhalt" class="aktuelle_anzeige"></p>
+                </div>
+                <div id="box-aktueller-keller" data-intro="Hier befindet sich der aktuelle Keller.">
+                    <h5>aktueller Keller:</h5><p id="keller_empty" class="aktuelle_anzeige">empty</p>
+<p id="aktueller_keller_inhalt" class="aktuelle_anzeige"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/intro.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/kellerautomat.js"></script>
+</body>
+
+</html>
