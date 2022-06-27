@@ -1,12 +1,12 @@
-// korrekte Ausdrücke zur zufälligen Ausgabe 
-var arrayKorrekt = ["1","3","(0)","(5)","1+1","7*8","9-6","(3-2)","(5*5)","4+(2)","8*(0)","7+5-3","3*2+1","(9)-1","7/(1)","4-(5+4)","5*(2/1)"];
+// korrekte Ausdrücke zur zufälligen Ausgabe
+var arrayKorrekt = ["1","3","(0)","(5)","1+1","7*8","9-6","(3-2)","(5*5)","4+(2)","8*(0)","((7))","((8))","7+5-3","3*2+1","(9)-1","7/(1)","4-(5+4)","5*(2/1)"];
 
 function getAusdruckKorrekt(){
     document.getElementById("expression").value = arrayKorrekt[Math.floor(Math.random() * arrayKorrekt.length)];
 }
 
 // falsche Ausdrücke zur zufälligen Ausgabe 
-var arrayFalsch = ["(","+","*","22","7-","1++","2+(","3-()","(9/3","4*10","8*5/","3*3+)","0+((1","(1+2+","6-2++","2*(3-2","1+(5/1"];
+var arrayFalsch = ["(","+","*","22","7-","1++","2+(","3-()","(9/3","((1)","4*10","8*5/","3*3+)","0+((1","(1+2+","6-2++","2*(3-2","1+(5/1"];
 
 function getAusdruckFalsch(){
     document.getElementById("expression").value = arrayFalsch[Math.floor(Math.random() * arrayFalsch.length)];
@@ -984,15 +984,162 @@ $(document).ready(function(){
                 }
                             
              }
-                  
+          
           /* ZWEITE STELLE IM AUSDRUCK
-            wenn zweite Stelle des Ausdrucks = kein Element des Eingabealphabets, ein Operator oder 
-            eine Klammer, dann Meldung "Ausdruck ungültig" & Ende */
-            else { setTimeout(function() { $("#q2_kreis").css("fill", "#c68d8d");
-                                           $("#aktueller_ausdruck_inhalt").append(b);
-                                           $("#aktueller_ausdruck_inhalt").append(" → Ausdruck ist ungültig");
-                                           $("#aktueller_ausdruck_inhalt").css("color", "red"); }, time*step);
-            }
+          wenn zweite Stelle des Ausdrucks = öffnende Klammer, mache einen Loop bei q1 */
+          else if (expressionArray[i] == "(") {
+
+          // q1-Kreis wieder schwarz, q1-Pfeil wird grün angezeigt, Stelle wurde verarbeitet
+          setTimeout(function() { $("#q1_kreis").css("fill", "none");
+                                  $("#q1_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
+                                  $("#q1_pfeil_text").css("stroke", "#8dc68d");
+                                  $("#aktueller_keller_inhalt").append("(");
+                                  $("#ausdruck_empty").remove();  
+                                  $("#aktueller_ausdruck_inhalt").append(a); }, time*step);
+          step++;
+          i++;
+              
+              /* DRITTE STELLE IM AUSDRUCK
+              wenn dritte Stelle im Ausdruck = leer, dann Ausdruck ungültig */ 
+              if (expressionArray[i] == null) { setTimeout(function() { 
+                                     $("#q1_kreis").css("fill", "#c68d8d");
+                                     $("#aktueller_ausdruck_inhalt").append(" → Ausdruck ist ungültig");
+                                     $("#aktueller_ausdruck_inhalt").css("color", "red"); }, time*step);
+              }
+                
+              /* DRITTE STELLE IM AUSDRUCK
+              wenn dritte Stelle des Ausdrucks = Zahl von 0-9, gehe zu q2 */
+              else if ((expressionArray[i] == "0") || (expressionArray[i] == "1") || (expressionArray[i] == "2") || (expressionArray[i] == "3") || (expressionArray[i] == "4") || (expressionArray[i] == "5") || (expressionArray[i] == "6") || (expressionArray[i] == "7") || (expressionArray[i] == "8") || (expressionArray[i] == "9")) {
+                  
+              // q1-Pfeil wieder schwarz, q1-Kreis wird grün angezeigt
+              setTimeout(function() { $("#q1_pfeil").css({"stroke": "#3D3D3D", "fill": "#3D3D3D"});
+                              $("#q1_pfeil_text").css("stroke", "#3D3D3D");
+                              $("#q1_kreis").css("fill", "#8dc68d"); }, time*step);
+              step++;
+                  
+              // q1-Kreis wieder schwarz, q1q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet
+              setTimeout(function() { $("#q1_kreis").css("fill", "none");
+                                        $("#q1q2_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
+                                        $("#q1q2_pfeil_text").css("stroke", "#8dc68d");
+                                        $("#aktueller_ausdruck_inhalt").append(c); }, time*step);
+                    
+              step++;
+              i++;
+                    
+              // q1q2-Pfeil wieder schwarz, q2-Kreis wird grün angezeigt
+              setTimeout(function() { $("#q1q2_pfeil").css({"stroke": "#3D3D3D", "fill": "#3D3D3D"});
+                                      $("#q1q2_pfeil_text").css("stroke", "#3D3D3D");
+                                      $("#q2_kreis").css("fill", "#8dc68d"); }, time*step);
+                    
+              step++;
+                  
+                  /* VIERTE STELLE IM AUSDRUCK
+                  wenn vierte Stelle des Ausdrucks = leer, dann Ausdruck ungültig */
+                  if (expressionArray[i] == null) { setTimeout(function() { 
+                                     $("#q1q2_pfeil").css({"stroke": "#3D3D3D", "fill": "#3D3D3D"});
+                                     $("#q1q2_pfeil_text").css("stroke", "#3D3D3D"); 
+                                     $("#q2_kreis").css("fill", "#c68d8d");
+                                     $("#aktueller_ausdruck_inhalt").append(" → Ausdruck ist ungültig");
+                                     $("#aktueller_ausdruck_inhalt").css("color", "red"); }, time*step);
+                  }
+                  
+                  /* VIERTE STELLE IM AUSDRUCK
+                  wenn vierte Stelle des Ausdrucks = schließende Klammer, dann mache Loop bei q2 */
+                  else if (expressionArray[i] == ")") {
+                            
+                  // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet
+                  setTimeout(function() { $("#q2_kreis").css("fill", "none");
+                                          $("#q2_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
+                                          $("#q2_pfeil_text").css("stroke", "#8dc68d");
+                                          $("#aktueller_keller_inhalt").text("$(");
+                                          $("#aktueller_ausdruck_inhalt").append(d); }, time*step);
+                  step++;
+                  i++;
+
+                  // q2-Pfeil wieder schwarz, q2-Kreis wird grün angezeigt
+                  setTimeout(function() { $("#q2_pfeil").css({"stroke": "#3D3D3D", "fill": "#3D3D3D"});
+                  $("#q2_pfeil_text").css("stroke", "#3D3D3D");
+                  $("#q2_kreis").css("fill", "#8dc68d"); }, time*step);
+                      
+                  step++;
+                      
+                      /* FÜNFTE STELLE IM AUSDRUCK
+                      wenn FÜNFTE Stelle des Ausdrucks = leer, dann Ausdruck ungültig */
+                      if (expressionArray[i] == null) { setTimeout(function() { 
+                                     $("#q1q2_pfeil").css({"stroke": "#3D3D3D", "fill": "#3D3D3D"});
+                                     $("#q1q2_pfeil_text").css("stroke", "#3D3D3D"); 
+                                     $("#q2_kreis").css("fill", "#c68d8d");
+                                     $("#aktueller_ausdruck_inhalt").append(" → Ausdruck ist ungültig");
+                                     $("#aktueller_ausdruck_inhalt").css("color", "red"); }, time*step);
+                      }
+                      
+                      /* FÜNFTE STELLE IM AUSDRUCK
+                      wenn fünfte Stelle des Ausdrucks = schließende Klammer, dann mache Loop bei q2 */
+                      else if (expressionArray[i] == ")") {
+
+                      // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet
+                      setTimeout(function() { $("#q2_kreis").css("fill", "none");
+                                              $("#q2_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
+                                              $("#q2_pfeil_text").css("stroke", "#8dc68d");
+                                              $("#aktueller_keller_inhalt").text("$");
+                                              $("#aktueller_ausdruck_inhalt").append(e); }, time*step);
+                      step++;
+                      i++;
+
+                      // q2-Pfeil wieder schwarz, q2-Kreis wird grün angezeigt
+                      setTimeout(function() { $("#q2_pfeil").css({"stroke": "#3D3D3D", "fill": "#3D3D3D"});
+                      $("#q2_pfeil_text").css("stroke", "#3D3D3D");
+                      $("#q2_kreis").css("fill", "#8dc68d"); }, time*step);
+
+                      step++;
+                          
+                          /* SECHSTE STELLE IM AUSDRUCK
+                          wenn sechste Stelle im Ausdruck = leer, gehe weiter zu q3 */
+                          if (expressionArray[i] == null) {
+                            
+                          // q2-Kreis wieder schwarz, q2q3-Pfeil wird grün angezeigt, Keller konsumiert $
+                          setTimeout(function() { $("#q2_kreis").css("fill", "none");
+                          $("#q2q3_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
+                          $("#q2q3_pfeil_text").css("stroke", "#8dc68d");
+                          $("#aktueller_keller_inhalt").remove();
+                          $("#keller_empty").show(); }, time*step);
+                          step++;
+                            
+                          // q2q3-Pfeil wieder schwarz, q3-Kreis wird grün angezeigt, Ausdruck gültig
+                          setTimeout(function() { $("#q2q3_pfeil").css({"stroke": "#3D3D3D", "fill": "#3D3D3D"});
+                          $("#q2q3_pfeil_text").css("stroke", "#3D3D3D"); 
+                          $("#q3_kreis_aussen").css("fill", "#8dc68d");
+                          $("#aktueller_ausdruck_inhalt").append(" → Ausdruck ist gültig");
+                          $("#aktueller_ausdruck_inhalt").css("color", "green"); }, time*step);
+                                
+                          }
+                          
+                      }    
+                      
+                  }
+                    
+              }
+              
+              /* DRITTE STELLE IM AUSDRUCK
+              wenn dritte Stelle des Ausdrucks = kein Element des Eingabealphabets, ein Operator oder 
+              eine schließende Klammer, dann Meldung "Ausdruck ungültig" & Ende */
+              else { setTimeout(function() { $("#q1_pfeil").css({"stroke": "#3D3D3D", "fill": "#3D3D3D"});
+                                             $("#q1_pfeil_text").css("stroke", "#3D3D3D");$("#q1_kreis").css("fill", "#c68d8d");
+                                             $("#aktueller_ausdruck_inhalt").append(c);
+                                             $("#aktueller_ausdruck_inhalt").append(" → Ausdruck ist ungültig");
+                                             $("#aktueller_ausdruck_inhalt").css("color", "red"); }, time*step);
+              }
+              
+          }
+          
+          /* ZWEITE STELLE IM AUSDRUCK
+          wenn zweite Stelle des Ausdrucks = kein Element des Eingabealphabets, ein Operator oder 
+          eine Klammer, dann Meldung "Ausdruck ungültig" & Ende */
+          else { setTimeout(function() { $("#q2_kreis").css("fill", "#c68d8d");
+                                         $("#aktueller_ausdruck_inhalt").append(b);
+                                         $("#aktueller_ausdruck_inhalt").append(" → Ausdruck ist ungültig");
+                                         $("#aktueller_ausdruck_inhalt").css("color", "red"); }, time*step);
+          }
      
       }
       
