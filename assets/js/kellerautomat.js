@@ -369,7 +369,8 @@ $(document).ready(function(){
                             }
                                  
                             /* SECHSTE STELLE IM AUSDRUCK
-                            wenn sechste Stelle im Ausdruck = Zahl 0-9, dann gehe zu q2 */                   else if ((expressionArray[i] == "0") || (expressionArray[i] == "1") || (expressionArray[i] == "2") || (expressionArray[i] == "3") || (expressionArray[i] == "4") || (expressionArray[i] == "5") || (expressionArray[i] == "6") || (expressionArray[i] == "7") || (expressionArray[i] == "8") || (expressionArray[i] == "9")) {
+                            wenn sechste Stelle im Ausdruck = Zahl 0-9, dann gehe zu q2 */                   
+                            else if ((expressionArray[i] == "0") || (expressionArray[i] == "1") || (expressionArray[i] == "2") || (expressionArray[i] == "3") || (expressionArray[i] == "4") || (expressionArray[i] == "5") || (expressionArray[i] == "6") || (expressionArray[i] == "7") || (expressionArray[i] == "8") || (expressionArray[i] == "9")) {
                     
                             // q1-Kreis wieder schwarz, q1q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet
                             setTimeout(function() { $("#q1_kreis").css("fill", "none");
