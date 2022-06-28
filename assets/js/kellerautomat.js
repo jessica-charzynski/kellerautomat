@@ -106,7 +106,7 @@ $(document).ready(function(){
             wenn zweite Stelle = Operator, gehe zurück zu q1 */
             else if ((expressionArray[i] == "+") || (expressionArray[i] == "-") || (expressionArray[i] == "*") || (expressionArray[i] == "/")) {
                 
-            // q2-Kreis wieder schwarz, q2q1-Pfeil wird grün angezeigt, Keller, Stelle wird verarbeitet
+            // q2-Kreis wieder schwarz, q2q1-Pfeil wird grün angezeigt, Stelle wird verarbeitet
             setTimeout(function() { $("#q2_kreis").css("fill", "none");
                                     $("#q2q1_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
                                     $("#q2q1_pfeil_text").css("stroke", "#8dc68d");
@@ -175,7 +175,7 @@ $(document).ready(function(){
                     wenn vierte Stelle im Ausdruck = Operator, dann gehe zurück zu q1 */
                     else if ((expressionArray[i] == "+") || (expressionArray[i] == "-") || (expressionArray[i] == "*") || (expressionArray[i] == "/")) {
                 
-                    // q2-Kreis wieder schwarz, q2q1-Pfeil wird grün angezeigt, Keller, Stelle wird verarbeitet
+                    // q2-Kreis wieder schwarz, q2q1-Pfeil wird grün angezeigt, Stelle wird verarbeitet
                     setTimeout(function() { $("#q2_kreis").css("fill", "none");
                                             $("#q2q1_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
                                             $("#q2q1_pfeil_text").css("stroke", "#8dc68d");
@@ -345,7 +345,7 @@ $(document).ready(function(){
                         wenn fünfte Stelle des Ausdrucks = Operator, dann gehe zurück zu q1 */
                         else if ((expressionArray[i] == "+") || (expressionArray[i] == "-") || (expressionArray[i] == "*") || (expressionArray[i] == "/")){
                             
-                        // q2-Kreis wieder schwarz, q2q1-Pfeil wird grün angezeigt, Keller, Stelle wird verarbeitet
+                        // q2-Kreis wieder schwarz, q2q1-Pfeil wird grün angezeigt, Stelle wird verarbeitet
                         setTimeout(function() { $("#q2_kreis").css("fill", "none");
                         $("#q2q1_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
                         $("#q2q1_pfeil_text").css("stroke", "#8dc68d");
@@ -399,7 +399,7 @@ $(document).ready(function(){
                                 wenn siebte Stelle des Ausdrucks = schließende Klammer, dann mache Loop bei q2 */
                                 else if (expressionArray[i] == ")") {
                             
-                                // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet
+                                // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet, Keller konsumiert (
                                 setTimeout(function() { $("#q2_kreis").css("fill", "none");
                                 $("#q2_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
                                 $("#q2_pfeil_text").css("stroke", "#8dc68d");
@@ -444,7 +444,7 @@ $(document).ready(function(){
                         wenn fünfte Stelle des Ausdrucks = schließende Klammer, dann mache Loop bei q2 */
                         else if (expressionArray[i] == ")") {
                             
-                        // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet
+                        // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet, Keller konsumiert (
                         setTimeout(function() { $("#q2_kreis").css("fill", "none");
                         $("#q2_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
                         $("#q2_pfeil_text").css("stroke", "#8dc68d");
@@ -686,7 +686,7 @@ $(document).ready(function(){
               wenn dritte Stelle im Ausdruck = Operator, gehe zurück zu q1 */
               else if ((expressionArray[i] == "+") || (expressionArray[i] == "-") || (expressionArray[i] == "*") || (expressionArray[i] == "/")) {
               
-              // q2-Kreis wieder schwarz, q2q1-Pfeil wird grün angezeigt, Keller, Stelle wird verarbeitet
+              // q2-Kreis wieder schwarz, q2q1-Pfeil wird grün angezeigt, Stelle wird verarbeitet
               setTimeout(function() { $("#q2_kreis").css("fill", "none");
                                       $("#q2q1_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
                                       $("#q2q1_pfeil_text").css("stroke", "#8dc68d");
@@ -740,7 +740,7 @@ $(document).ready(function(){
                       wenn fünfte Stelle des Ausdrucks = Operator, dann gehe zurück zu q1 */
                       else if ((expressionArray[i] == "+") || (expressionArray[i] == "-") || (expressionArray[i] == "*") || (expressionArray[i] == "/")){
                       
-                      // q2-Kreis wieder schwarz, q2q1-Pfeil wird grün angezeigt, Keller, Stelle wird verarbeitet
+                      // q2-Kreis wieder schwarz, q2q1-Pfeil wird grün angezeigt, Stelle wird verarbeitet
                       setTimeout(function() { $("#q2_kreis").css("fill", "none");
                       $("#q2q1_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
                       $("#q2q1_pfeil_text").css("stroke", "#8dc68d");
@@ -770,7 +770,7 @@ $(document).ready(function(){
                         wenn fünfte Stelle des Ausdrucks = schließende Klammer, dann mache Loop bei q2 */
                         else if (expressionArray[i] == ")") {
                             
-                        // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet
+                        // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet, Keller konsumiert (
                         setTimeout(function() { $("#q2_kreis").css("fill", "none");
                         $("#q2_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
                         $("#q2_pfeil_text").css("stroke", "#8dc68d");
@@ -834,7 +834,7 @@ $(document).ready(function(){
               wenn dritte Stelle des Ausdrucks = schließende Klammer, dann mache Loop bei q2 */
               else if (expressionArray[i] == ")") {
                             
-             // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet
+             // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet, Keller konsumiert (
              setTimeout(function() { $("#q2_kreis").css("fill", "none");
                                      $("#q2_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
                                      $("#q2_pfeil_text").css("stroke", "#8dc68d");
@@ -873,7 +873,7 @@ $(document).ready(function(){
                   wenn vierte Stelle im Ausdruck = Operator, dann gehe zurück zu q1 */
                   else if ((expressionArray[i] == "+") || (expressionArray[i] == "-") || (expressionArray[i] == "*") || (expressionArray[i] == "/")) {
                 
-                  // q2-Kreis wieder schwarz, q2q1-Pfeil wird grün angezeigt, Keller, Stelle wird verarbeitet
+                  // q2-Kreis wieder schwarz, q2q1-Pfeil wird grün angezeigt, Stelle wird verarbeitet
                     setTimeout(function() { $("#q2_kreis").css("fill", "none");
                                             $("#q2q1_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
                                             $("#q2q1_pfeil_text").css("stroke", "#8dc68d");
@@ -1048,7 +1048,7 @@ $(document).ready(function(){
                   wenn vierte Stelle des Ausdrucks = schließende Klammer, dann mache Loop bei q2 */
                   else if (expressionArray[i] == ")") {
                             
-                  // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet
+                  // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet, Keller konsumiert (
                   setTimeout(function() { $("#q2_kreis").css("fill", "none");
                                           $("#q2_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
                                           $("#q2_pfeil_text").css("stroke", "#8dc68d");
@@ -1078,7 +1078,7 @@ $(document).ready(function(){
                       wenn fünfte Stelle des Ausdrucks = schließende Klammer, dann mache Loop bei q2 */
                       else if (expressionArray[i] == ")") {
 
-                      // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet
+                      // q2-Kreis wieder schwarz, q2-Pfeil wird grün angezeigt, Stelle wurde verarbeitet, Keller konsumiert (
                       setTimeout(function() { $("#q2_kreis").css("fill", "none");
                                               $("#q2_pfeil").css({"stroke": "#8dc68d", "fill": "#8dc68d"});
                                               $("#q2_pfeil_text").css("stroke", "#8dc68d");
