@@ -63,6 +63,14 @@ $(document).ready(function(){
       var e = expressionArray[4];
       var f = expressionArray[5];
       var g = expressionArray[6];
+      var h = expressionArray[7];
+      var i = expressionArray[8];
+      var j = expressionArray[9];
+      var k = expressionArray[10];
+      var l = expressionArray[11];
+      var m = expressionArray[12];
+      var n = expressionArray[13];
+      var o = expressionArray[14];
       
       /* ERSTE STELLE IM AUSDRUCK
       wenn erste Stelle des Ausdrucks = Zahl von 0-9, gehe zu q2 */
